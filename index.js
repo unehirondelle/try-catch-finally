@@ -1,19 +1,21 @@
-//finally -> try
+//try_statement_start -> finally_statement -> Error; try_statement_end isn't displayed because it's after throw reserved word
 function throwsError() {
     throw new Error('Sorry...');
 }
 
 function cleansUp() {
     try {
+        console.log("try_statement_start");
         throwsError();
+        console.log("try_statement_end");
     } finally {
-        console.log('Performing clean-up');
+        console.log("finally_statement");
     }
 }
 
 cleansUp();
 
-//try -> finally
+//x -> result (returns now because there is nothing to compute) -> finally
 function idLog(x) {
     try {
         console.log(x);
@@ -25,15 +27,15 @@ function idLog(x) {
 
 idLog("arg");
 
-//try (console.log executes but return doesn't) -> finally
+//try_statement -> computes count -> finally_statement -> returns count
 var count = 0;
 
 function countUp() {
     try {
-        console.log("count");
+        console.log("try_statement");
         return count;
     } finally {
-        console.log("count++");
+        console.log("finally_statement");
         count++;
     }
 }

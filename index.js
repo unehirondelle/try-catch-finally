@@ -25,14 +25,16 @@ function idLog(x) {
 
 idLog("arg");
 
-//finally executes, but try doesn't
+//try (console.log executes but return doesn't) -> finally
 var count = 0;
 
 function countUp() {
     try {
+        console.log("count");
         return count;
     } finally {
-        count++; // (1)
+        console.log("count++");
+        count++;
     }
 }
 
